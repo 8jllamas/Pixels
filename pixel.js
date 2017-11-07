@@ -29,10 +29,12 @@ function Pixel(r,g,b){
       this.blue = this.blue + n;
       if(this.blue > 255){
         this.blue = 255;
+      }
+      if(this.blue < 0){
+          this.blue = 0;
+        }
     };
-    if(this.blue < 0){
-      this.blue = 0;
-    }
+
     this.brighten = function(n){
       this.red = this.red*n;
       this.green = this.green*n;
@@ -40,11 +42,12 @@ function Pixel(r,g,b){
     };
 
     this.complement = function(n){
-      let new complementRed = new pixel(255-this.red) ;
-      return new complementRed
+      this.complement = new Pixel(255-this.red, 255-this.green,255-this.blue) ;
+      return  this.complement;
     };
 
     this.grayScale = function(n){
+       return (this.red + this.green + this.blue) / 3 ;
 
     };
 
